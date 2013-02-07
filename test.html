@@ -1,0 +1,41 @@
+<html>
+<head>
+  <link href="static/jquery-theme/jquery-ui-redmond.css" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" type="text/css" href="style-vis.css"/>
+  <link rel="stylesheet" type="text/css" href="style-ui.css"/>
+  <link href="style-filetree.css" rel="stylesheet" type="text/css"/>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script type="text/javascript" src="client/src/jqueryFileTree.js"></script>
+  <script type="text/javascript">
+      $(document).ready( function() {
+          $('#filetree').fileTree({
+              root : '/brat/data/',
+              script : '/jqueryFileTree/connectors/jqueryFileTree.php'
+            },
+            function(file) {
+              alert(file);
+            });
+
+        $('#neighbor').html("<p>world!</p>");
+      });
+  </script>
+  <style type="text/css">
+    #filetree {
+       width: 200px;
+       height: 400px;
+       border-top: solid 1px #BBB;
+       border-left: solid 1px #BBB;
+       border-bottom: solid 1px #FFF;
+       border-right: solid 1px #FFF;
+       background: #FFF;
+       overflow: scroll;
+       padding: 5px;
+       resize: both;
+    }
+  </style>
+</head>
+<body>
+<div id="filetree" style="display: inline"></div>
+<div id="neighbor" class="filetree"></div>
+</body>
+</html>

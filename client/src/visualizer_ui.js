@@ -902,6 +902,7 @@ var VisualizerUI = (function($, window, undefined) {
         setTimeout(function() {
           $('#document_input').focus().select();
         }, 0);
+        $('jqueryFileTree').css('display','inline');
       }; // end showFileBrowser()
       $('#collection_browser_button').click(function(evt) {
         dispatcher.post('clearSearch');
@@ -1978,7 +1979,7 @@ var VisualizerUI = (function($, window, undefined) {
       });
       authForm.submit(authFormSubmit);
 
-
+      var filetree     = $('#filetree');
       var tutorialForm = $('#tutorial');
       if (!$.browser.webkit) {
         // Inject the browser warning
@@ -1996,8 +1997,27 @@ var VisualizerUI = (function($, window, undefined) {
         }],
         close: function() {
           if (fileBrowserWaiting) {
-            showFileBrowser();
+            filetree.fileTree({
+                root : '/brat/data/',
+                script : '/jqueryFileTree/connectors/jqueryFileTree.php'
+              },
+              function(file) {
+                alert(file);
+              });
+            $('jqueryFileTree').css('display','block');
+            $('#filetree').html("bla");
+            $('jqueryFileTree').html('hi');
+            window.setTimeout(function(){showFileBrowser();},4000);
+            $('jqueryFileTree').css('display','block');
+            window.setTimeout(function(){},4000);
           }
+          $('#filetree').fileTree({
+              root : '/brat/data/',
+              script : '/jqueryFileTree/connectors/jqueryFileTree.php'
+            },
+            function(file) {
+              alert(file);
+            });
         }
       });
 
